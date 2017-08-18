@@ -1,48 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malauzet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/10 14:50:23 by malauzet          #+#    #+#             */
-/*   Updated: 2017/08/14 13:47:38 by malauzet         ###   ########.fr       */
+/*   Created: 2017/08/12 22:27:54 by malauzet          #+#    #+#             */
+/*   Updated: 2017/08/13 10:07:51 by malauzet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <unistd.h>
 
-int		exclu(char *str, int n)
+int		ft_putchar(char c)
 {
-	while (str[n] < 33 && str[n] != 127)
-	{
-		n++;
-	}
-	return (n);
+	write(1, &c, 1);
+	return (0);
 }
 
-int		ft_atoi(char *str)
+void	ft_putstr(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
+}
+
+int		main(int argc, char **argv)
 {
 	int		n;
-	int		neg;
-	int		nbr;
 
-	n = 0;
-	neg = 1;
-	nbr = 0;
-	n = exclu(str, n);
-	if (str[n] == '-')
-		neg = -1;
-	if (str[n] == '-' || str[n] == '+')
-		n++;
-	if (str[n] >= 48 && str[n] <= 57)
+	n = 1;
+	while (argc == 10 && argv[n] != '\0')
 	{
-		while (str[n] >= 48 && str[n] <= 57)
-		{
-			nbr = nbr * 10;
-			nbr = nbr + (str[n] - 48);
-			n++;
-		}
+		ft_putstr(argv[n]);
+		ft_putchar('\n');
+		n++;
 	}
-	return (nbr * neg);
+	return (0);
 }
